@@ -1,0 +1,16 @@
+{
+  "intents": [
+    {
+      "intent": "RamsayIntent",
+      "slots": [
+          {
+              "name":"Food",
+              "type":"FOODS"
+          }
+      ]
+    },
+    {
+      "intent": "AMAZON.HelpIntent"
+    }
+  ]
+}
