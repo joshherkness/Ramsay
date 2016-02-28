@@ -200,7 +200,7 @@ function getRecipeIngredientsWithId(id, callback) {
         var recipeIngredients = recipeInformation.extendedIngredients;
         callback(recipeIngredients);
     });
-
+}
 
 
 
@@ -210,6 +210,7 @@ function getRecipeImageWithID(id, callback) {
         var recipeImage = recipeInformation.image;
         callback(recipeImage);
     });
+}
 
 function getRecipeTitleWithID(id, callback) {
     getRecipeInformation(id, function (information) {
@@ -217,25 +218,23 @@ function getRecipeTitleWithID(id, callback) {
         var recipeImage = recipeInformation.title;
         callback(recipeTitle);
     });
+}
 
-function buildCard(id, response){
+function buildCard(id){
     var title;
     var image;
     getRecipeTitleWithID(id, function (recipeTitle) {
-        var title = recipeTitle;
+        title = recipeTitle;
     });
     getRecipeImageWithID(id, function (recipeImage) {
-        var image = recipeImage;
+        image = recipeImage;
     });
-  return{
-    card:{
-        type: "Simple",
-        title: title
-        content: image
-    }
-  };
-}
 
-
-
+    return{
+        card:{
+            type: "Simple",
+            title: title
+            content: image
+        }
+    };
 }
