@@ -66,7 +66,7 @@ Ramsay.prototype.eventHandlers.onSessionEnded = function (sessionEndedRequest, s
 Ramsay.prototype.intentHandlers = {
     // register custom intent handlers
     "RecipeIntent": function (intent, session, response) {
-        recipeHandler(intent, session, response);
+        listIngredients(intent, session, response);
     },
     "AMAZON.HelpIntent": function (intent, session, response) {
         response.ask("You can say hello to me!", "You can say hello to me!");
@@ -81,7 +81,30 @@ exports.handler = function (event, context) {
 };
 
 
+function listIngredients(intent, session, response){
 
+    // Get the food
+    var foodSlot = intent.slots.Food,
+        foodName;
+    if (foodSlot && foodSlot.value){
+        foodName = foodSlot.value.toLowerCase();
+        // Request the recipe using the API
+    }
+
+    getRecipeIngredientsWithKeyword(foodName, function (recipeIngredients) {
+        var s = "You need ";
+        for(var i = 0; i < recipeIngredients.length; i++){
+          if(i == 0){
+            s = s + recipeIngredients[i].name;
+          }else if(i == recipeIngredients.length - 1){
+            s = s + ", and " + recipeIngredients[i].name;
+          }else{
+            s = s + ", " + recipeIngredients[i].name;
+          }
+        }
+        response.tell(s);
+    });
+}
 
 
 function recipeHandler(intent, session, response){
@@ -91,7 +114,7 @@ function recipeHandler(intent, session, response){
     response.ask("Error in Recipe Handler");
   }else{
     var speechOutput = "";
-    
+
     getRecipes(request, function(recipes) {
       for(var x = 0; x < 3; x++){
         speechOutput += (toString(x) + recipe[x].title.value + " ");
@@ -108,7 +131,7 @@ function recipeSelector(intent, session, response){
   if (session.attributes.stage){
     if (session.attributes.stage == 1){
       response.ask("Successfully reached stage 2");
-      //if (response = 
+      //if (response =
     }
   }
 }
