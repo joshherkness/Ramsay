@@ -1,3 +1,5 @@
 RecipeIntent what do i need to make {Food}
 RecipeIntent what ingredients do i need to make {Food}
 RecipeIntent recipes for {Food}
+
+SelectorIntent {Selection}

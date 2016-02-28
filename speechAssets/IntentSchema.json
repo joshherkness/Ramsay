@@ -10,10 +10,25 @@
       ]
     },
     {
+      "intent": "SelectorIntent",
+      "slots": [
+          {
+              "name":"Selection",
+              "type":"SELECT"
+          }
+      ]
+    },
+    {
       "intent": "AMAZON.HelpIntent"
     },
     {
-      "intent": "IngredientIntent"
+      "intent": "IngredientIntent",
+      "slots": [
+          {
+              "name":"Food",
+              "type":"FOODS"
+          }
+      ]
     },
     {
       "intent": "IntoleranceIntent",
