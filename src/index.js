@@ -243,7 +243,7 @@ function getRecipeTitleWithID(id, callback) {
     });
 }
 
-function buildCard(id){
+function respondWithRecipeCard(id,response){
     var title;
     var image;
     getRecipeTitleWithID(id, function (recipeTitle) {
@@ -252,12 +252,6 @@ function buildCard(id){
     getRecipeImageWithID(id, function (recipeImage) {
         image = recipeImage;
     });
-
-    return{
-        card:{
-            type: "Simple",
-            title: title,
-            content: image
-        }
-    };
+    tellWithCard(response, recipeTitle, recipeImage)
+}
 }
