@@ -19,9 +19,6 @@
       ]
     },
     {
-      "intent": "AMAZON.HelpIntent"
-    },
-    {
       "intent": "IngredientIntent",
       "slots": [
           {
@@ -47,6 +44,9 @@
               "type":"DIETS"
           }
       ]
+    },
+    {
+      "intent": "AMAZON.HelpIntent"
     }
   ]
 }
