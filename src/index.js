@@ -31,6 +31,12 @@ var AlexaSkill = require('./AlexaSkill');
 var unirest = require('unirest');
 
 /**
+  * Instance Variables
+ */
+
+ var current_recipe = null;
+
+ /**
  * Ramsay is a child of AlexaSkill.
  * To read more about inheritance in JavaScript, see the link below.
  */
@@ -85,18 +91,9 @@ function listIngredients(intent, session, response){
       foodName;
   if (foodSlot && foodSlot.value){
       foodName = foodSlot.value.toLowerCase();
-      // Request the recipe using the API
+      response.tell("you said " + foodName);
 
-// These code snippets use an open-source library. http://unirest.io/nodejs
-unirest.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?query="+foodName)
-.header("X-Mashape-Key", "xLF0Y8EFkbmshJOu8uSJTegllCeDp1B0p7FjsnlEG5itY0wijC")
-.end(function (result) {
-  console.log(result.status, result.headers, result.body);
-});
-      /*
-      response.tell(foodName);
-  } else {
-      response.tell("I'm sorry, I don't know what that is");
-      */
+      // Request the recipe using the API
+      
   }
 };
