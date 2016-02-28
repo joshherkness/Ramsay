@@ -6,6 +6,10 @@
           {
               "name":"Food",
               "type":"FOODS"
+          },
+          {
+              "name":"Intolerance",
+              "type":"INTOLERANCES"
           }
       ]
     },
@@ -24,15 +28,6 @@
           {
               "name":"Intolerance",
               "type":"INTOLERANCES"
-          }
-      ]
-    },
-    {
-      "intent": "DietIntent",
-      "slots": [
-          {
-              "name":"Diet",
-              "type":"DIETS"
           }
       ]
     },

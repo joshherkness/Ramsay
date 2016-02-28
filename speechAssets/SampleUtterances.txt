@@ -1,9 +1,18 @@
-RecipeIntent what do i need to make {Food}
-RecipeIntent what ingredients do i need to make {Food}
-RecipeIntent for {Food} recipes
-RecipeIntent what's in {Food}
-RecipeIntent composition of {Food}
-RecipeIntent for the ingredients of {Food}
-RecipeIntent for {Food} ingredients
+IngredientIntent what do i need to make {Food}
+IngredientIntent what ingredients do i need to make {Food}
+IngredientIntent what ingredients do i need to for {Food}
+IngredientIntent for {Food} recipes
+IngredientIntent what's in {Food}
+IngredientIntent what's inside {Food}
+IngredientIntent composition of {Food}
+IngredientIntent for the ingredients of {Food}
+IngredientIntent for {Food} ingredients
 
-SelectorIntent {Selection}
+RecipeIntent find me a recipe for {Food}
+RecipeIntent i want to eat {Food}
+RecipeIntent i want {Food}
+RecipeIntent find me a recipe for {Intolerance} free {Food}
+RecipeIntent i cant eat {Intolerance} but i want {Food}
+RecipeIntent find me a recipe for {Food} without {Intolerance}
+RecipeIntent i'm in the mood for {Food}
+RecipeIntent find me a {Food} recipe

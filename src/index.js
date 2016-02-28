@@ -65,6 +65,9 @@ Ramsay.prototype.eventHandlers.onSessionEnded = function (sessionEndedRequest, s
 
 Ramsay.prototype.intentHandlers = {
     // register custom intent handlers
+    "RecipeIntent": function (intent, session, response) {
+        recipeIntentHelper(intent, session, response);
+    },
     "IngredientIntent": function (intent, session, response) {
         listIngredients(intent, session, response);
     },
@@ -103,6 +106,21 @@ function listIngredients(intent, session, response){
           }
         }
         response.tell(s);
+    });
+}
+
+function recipeIntentHelper(intent, session, response) {
+  // Get the food
+  var foodSlot = intent.slots.Food,
+      foodName;
+  if (foodSlot && foodSlot.value){
+      foodName = foodSlot.value.toLowerCase();
+      // Request the recipe using the API
+  }
+    getRecipes(foodName, function (recipes) {
+        // Pick a randome element of the recipes that are returned.
+        var randomRecipe = recipes[Math.floor(Math.random()*recipes.length)];
+        response.tell("I found " + randomRecipe.title);
     });
 }
 
