@@ -80,6 +80,27 @@ exports.handler = function (event, context) {
     ramsay.execute(event, context);
 };
 
+
+
+
+
+function recipeHandler(intent, session, response){
+    
+    var speechOutput = "";
+    
+    getRecipes(keyword, function(recipes) {
+    for(var x = 0, x < 3, x++){
+       response.ask(toString(x) + recipe[x].title);
+       }
+    response.ask("More?");
+    }
+}
+
+
+
+
+
+
 function listIngredients(intent, session, response){
 
     // Get the food
