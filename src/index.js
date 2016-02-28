@@ -25,18 +25,14 @@ var APP_ID = undefined; //replace with "amzn1.echo-sdk-ams.app.[your-unique-valu
  */
 var AlexaSkill = require('./AlexaSkill');
 
-/**
- * Import the Unirest module
- */
+// Allow use of node unirest API
 var unirest = require('unirest');
 
+// Global value for the unirest key
+var unirestKey = "xLF0Y8EFkbmshJOu8uSJTegllCeDp1B0p7FjsnlEG5itY0wijC";
+
+
 /**
-  * Instance Variables
- */
-
- var current_recipe = null;
-
- /**
  * Ramsay is a child of AlexaSkill.
  * To read more about inheritance in JavaScript, see the link below.
  */
@@ -91,22 +87,74 @@ function listIngredients(intent, session, response){
       foodName;
   if (foodSlot && foodSlot.value){
       foodName = foodSlot.value.toLowerCase();
-      response.tell("Searching for " + foodName +" Recipes);
-
       // Request the recipe using the API
-      
-  }
+}
 
-function whatCanIMake(intent, session, response){
 
-  // Get the food
-  var foodSlot = intent.slots.Food,
-      foodName;
-  if (foodSlot && foodSlot.value){
-      foodName = foodSlot.value.toLowerCase();
-      response.tell("Searching for recipies using " + foodName);
+// API functions
 
-      // Request recipies using the API
-      
-  }
-};
+// Example of how to obtain a recipe given a keyword
+/*
+getRecipes(keyword, function(recipes) {
+    var closestRecipe = recipes[0];
+    console.log(closestRecipe);
+})
+*/
+
+
+function getRecipes(keyword, callback){
+    unirest.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?query="+keyword)
+    .header("X-Mashape-Key", unirestKey)
+    .end(function (result) {
+        callback(result.body.results);
+    });
+}
+
+// Example of how to obtain the recipe information
+/*
+getRecipeInformation(156992, function (information) {
+    var x = information;
+    console.log(x);
+});
+*/
+
+function getRecipeInformation(id, callback) {
+    unirest.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/"+id+"/information")
+    .header("X-Mashape-Key", unirestKey)
+    .end(function (result) {
+      callback(result.body);
+    });
+}
+
+// Example
+/*
+getRecipeIngredientsWithKeyword(keyword, function (recipeIngredients) {
+    console.log(recipeIngredients);
+});
+*/
+
+function getRecipeIngredientsWithKeyword(keyword, callback) {
+    getRecipes(keyword, function(recipes) {
+        var firstRecipeId = recipes[0].id;
+        getRecipeInformation(firstRecipeId, function (information) {
+            var recipeInformation = information;
+            var recipeIngredients = recipeInformation.extendedIngredients;
+            callback(recipeIngredients);
+        });
+    });
+}
+
+// Example
+/*
+getRecipeIngredientsWithId(156992, function (recipeIngredients) {
+    console.log(recipeIngredients);
+});
+*/
+
+function getRecipeIngredientsWithId(id, callback) {
+    getRecipeInformation(id, function (information) {
+        var recipeInformation = information;
+        var recipeIngredients = recipeInformation.extendedIngredients;
+        callback(recipeIngredients);
+    });
+}
