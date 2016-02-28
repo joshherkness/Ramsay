@@ -134,7 +134,7 @@ function recipeIntentHelper(intent, session, response) {
         }
         // Pick a randome element of the recipes that are returned.
         var randomRecipe = recipes[Math.floor(Math.random()*recipes.length)];
-        rrespondWithRecipeCard(randomRecipe.id, "I found " + randomRecipe.title, response);
+        respondWithRecipeCard(randomRecipe.id, "I found " + randomRecipe.title, response);
     });
 }
 
@@ -246,13 +246,10 @@ function getRecipeTitleWithID(id, callback) {
 }
 
 function respondWithRecipeCard(id, message, response){
-    var title;
-    var image;
-    getRecipeTitleWithID(id, function (recipeTitle) {
-        title = recipeTitle;
+    getRecipeInformation(id, function (information) {
+        var recipeInformation = information;
+        var image = recipeInformation.image;
+        var title = recipeInformation.title;
+        response.tellWithCard(message, recipeTitle, recipeImage);
     });
-    getRecipeImageWithID(id, function (recipeImage) {
-        image = recipeImage;
-    });
-    response.tellWithCard(message, recipeTitle, recipeImage);
 }
