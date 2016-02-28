@@ -65,11 +65,11 @@ Ramsay.prototype.eventHandlers.onSessionEnded = function (sessionEndedRequest, s
 
 Ramsay.prototype.intentHandlers = {
     // register custom intent handlers
-    "RecipeIntent": function (intent, session, response) {
+    "IngredientIntent": function (intent, session, response) {
         listIngredients(intent, session, response);
     },
     "AMAZON.HelpIntent": function (intent, session, response) {
-        response.ask("You can say hello to me!", "You can say hello to me!");
+        response.ask("I know alot about food", "Just ask, what's in cookies");
     }
 };
 
@@ -105,38 +105,6 @@ function listIngredients(intent, session, response){
         response.tell(s);
     });
 }
-
-
-function recipeHandler(intent, session, response){
-  var speechOutput = "";
-  var request = getRecipeRequest(intent, session, response);
-  if (session.attributes.stage) {
-    response.ask("Error in Recipe Handler");
-  }else{
-    var speechOutput = "";
-
-    getRecipes(request, function(recipes) {
-      for(var x = 0; x < 3; x++){
-        speechOutput += (toString(x) + recipe[x].title.value + " ");
-        //response.ask(toString(x) + recipe[x].title.value);
-      }
-    })
-  speechOutput += "More?";
-  response.ask(speechOutput);
-  session.attributes.stage = 1;
-  }
-}
-
-function recipeSelector(intent, session, response){
-  if (session.attributes.stage){
-    if (session.attributes.stage == 1){
-      response.ask("Successfully reached stage 2");
-      //if (response =
-    }
-  }
-}
-
-
 
 
 function getRecipeRequest(intent, session, response){

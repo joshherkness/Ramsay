@@ -10,15 +10,6 @@
       ]
     },
     {
-      "intent": "SelectorIntent",
-      "slots": [
-          {
-              "name":"Selection",
-              "type":"SELECT"
-          }
-      ]
-    },
-    {
       "intent": "IngredientIntent",
       "slots": [
           {
