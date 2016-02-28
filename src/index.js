@@ -91,7 +91,7 @@ function listIngredients(intent, session, response){
       foodName;
   if (foodSlot && foodSlot.value){
       foodName = foodSlot.value.toLowerCase();
-      response.tell("you said " + foodName);
+      response.tell("Searching for " + foodName +" Recipes);
 
       // Request the recipe using the API
       
@@ -104,7 +104,7 @@ function whatCanIMake(intent, session, response){
       foodName;
   if (foodSlot && foodSlot.value){
       foodName = foodSlot.value.toLowerCase();
-      response.tell("you said " + foodName);
+      response.tell("Searching for recipies using " + foodName);
 
       // Request recipies using the API
       
