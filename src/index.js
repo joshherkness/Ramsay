@@ -31,6 +31,8 @@ var unirest = require('unirest');
 // Global value for the unirest key
 var unirestKey = "xLF0Y8EFkbmshJOu8uSJTegllCeDp1B0p7FjsnlEG5itY0wijC";
 
+// Stores the key for the last referenced resipe
+var lastResipe;
 
 /**
  * Ramsay is a child of AlexaSkill.
@@ -108,7 +110,6 @@ function listIngredients(intent, session, response){
             s = s + ", " + recipeIngredients[i].name;
           }
         }
-        //respondWithRecipeCard(156992,s);
         response.tell(s);
     });
 }
@@ -133,7 +134,7 @@ function recipeIntentHelper(intent, session, response) {
         }
         // Pick a randome element of the recipes that are returned.
         var randomRecipe = recipes[Math.floor(Math.random()*recipes.length)];
-        response.tell("I found " + randomRecipe.title);
+        rrespondWithRecipeCard(randomRecipe.id, "I found " + randomRecipe.title, response);
     });
 }
 
@@ -244,7 +245,7 @@ function getRecipeTitleWithID(id, callback) {
     });
 }
 
-function respondWithRecipeCard(id,response){
+function respondWithRecipeCard(id, message, response){
     var title;
     var image;
     getRecipeTitleWithID(id, function (recipeTitle) {
@@ -253,5 +254,5 @@ function respondWithRecipeCard(id,response){
     getRecipeImageWithID(id, function (recipeImage) {
         image = recipeImage;
     });
-    tellWithCard(response, recipeTitle, recipeImage);
+    response.tellWithCard(message, recipeTitle, recipeImage);
 }
