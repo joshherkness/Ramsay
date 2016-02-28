@@ -1,4 +1,21 @@
 /**
+    Copyright 2014-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+    Licensed under the Apache License, Version 2.0 (the "License"). You may not use this file except in compliance with the License. A copy of the License is located at
+        http://aws.amazon.com/apache2.0/
+    or in the "license" file accompanying this file. This file is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+*/
+
+/**
+ * This simple sample has no external dependencies or session management, and shows the most basic
+ * example of how to create a Lambda function for handling Alexa Skill requests.
+ *
+ * Examples:
+ * One-shot model:
+ *  User: "Alexa, tell Greeter to say hello"
+ *  Alexa: "Hello World!"
+ */
+
+/**
  * App ID for the skill
  */
 var APP_ID = undefined; //replace with "amzn1.echo-sdk-ams.app.[your-unique-value-here]";
@@ -8,12 +25,14 @@ var APP_ID = undefined; //replace with "amzn1.echo-sdk-ams.app.[your-unique-valu
  */
 var AlexaSkill = require('./AlexaSkill');
 
-var Unirest = require('unirest');
+/**
+ * Import the Unirest module
+ */
+var unirest = require('unirest');
+
 /**
  * Ramsay is a child of AlexaSkill.
  * To read more about inheritance in JavaScript, see the link below.
- *
- * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Introduction_to_Object-Oriented_JavaScript#Inheritance
  */
 var Ramsay = function () {
     AlexaSkill.call(this, APP_ID);
@@ -24,20 +43,20 @@ Ramsay.prototype = Object.create(AlexaSkill.prototype);
 Ramsay.prototype.constructor = Ramsay;
 
 Ramsay.prototype.eventHandlers.onSessionStarted = function (sessionStartedRequest, session) {
-    console.log("Ramsay onSessionStarted requestId: " + sessionStartedRequest.requestId
+    console.log("HelloWorld onSessionStarted requestId: " + sessionStartedRequest.requestId
         + ", sessionId: " + session.sessionId);
     // any initialization logic goes here
 };
 
 Ramsay.prototype.eventHandlers.onLaunch = function (launchRequest, session, response) {
-    console.log("Ramsay onLaunch requestId: " + launchRequest.requestId + ", sessionId: " + session.sessionId);
+    console.log("HelloWorld onLaunch requestId: " + launchRequest.requestId + ", sessionId: " + session.sessionId);
     var speechOutput = "Welcome to the Alexa Skills Kit, you can say hello";
     var repromptText = "You can say hello";
     response.ask(speechOutput, repromptText);
 };
 
 Ramsay.prototype.eventHandlers.onSessionEnded = function (sessionEndedRequest, session) {
-    console.log("Ramsay onSessionEnded requestId: " + sessionEndedRequest.requestId
+    console.log("HelloWorld onSessionEnded requestId: " + sessionEndedRequest.requestId
         + ", sessionId: " + session.sessionId);
     // any cleanup logic goes here
 };
@@ -61,17 +80,15 @@ exports.handler = function (event, context) {
 
 function listIngredients(intent, session, response){
 
-    var foodSlot = intent.slots.Food,
-        foodName;
-    if (foodSlot && foodSlot.value){
-        foodName = foodSlot.value.toLowerCase();
-    }
+  // Get the food
+  var foodSlot = intent.slots.Food,
+      foodName;
+  if (foodSlot && foodSlot.value){
+      foodName = foodSlot.value.toLowerCase();
+      // Request the recipe using the API
 
-    // These code snippets use an open-source library. http://unirest.io/nodejs
-    Unirest.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?query=food")
-    .header("X-Mashape-Key", "g3fzrsM903mshlzvwgOzJ6GP0eZWp1n3457jsnG9hMcKHyTZeW")
-    .end(function (result) {
-        var resultId = result.body.results[0].id.value;
-        response.tell(resultId);
-    });
+      response.tell(foodName);
+  } else {
+      response.tell("I'm sorry, I don't know what that is");
+  }
 };
