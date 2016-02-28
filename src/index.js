@@ -82,14 +82,14 @@ exports.handler = function (event, context) {
 
 function listIngredients(intent, session, response){
 
-  // Get the food
-  var foodSlot = intent.slots.Food,
-      foodName;
-  if (foodSlot && foodSlot.value){
-      foodName = foodSlot.value.toLowerCase();
-      // Request the recipe using the API
+    // Get the food
+    var foodSlot = intent.slots.Food,
+        foodName;
+    if (foodSlot && foodSlot.value){
+        foodName = foodSlot.value.toLowerCase();
+        // Request the recipe using the API
+    }
 }
-
 
 // API functions
 
