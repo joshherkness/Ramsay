@@ -87,8 +87,16 @@ function listIngredients(intent, session, response){
       foodName = foodSlot.value.toLowerCase();
       // Request the recipe using the API
 
+// These code snippets use an open-source library. http://unirest.io/nodejs
+unirest.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?query="+foodName)
+.header("X-Mashape-Key", "xLF0Y8EFkbmshJOu8uSJTegllCeDp1B0p7FjsnlEG5itY0wijC")
+.end(function (result) {
+  console.log(result.status, result.headers, result.body);
+});
+      /*
       response.tell(foodName);
   } else {
       response.tell("I'm sorry, I don't know what that is");
+      */
   }
 };
