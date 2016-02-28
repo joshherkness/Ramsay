@@ -250,6 +250,6 @@ function respondWithRecipeCard(id, message, response){
         var recipeInformation = information;
         var image = recipeInformation.image;
         var title = recipeInformation.title;
-        response.tellWithCard(message, recipeTitle, recipeImage);
+        response.tellWithCard(message, title, image);
     });
 }
