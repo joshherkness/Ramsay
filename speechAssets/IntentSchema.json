@@ -1,11 +1,47 @@
 {
   "intents": [
     {
-      "intent": "RamsayIntent",
+      "intent": "RecipeIntent",
       "slots": [
           {
               "name":"Food",
               "type":"FOODS"
+          }
+      ]
+    },
+    {
+      "intent": "AMAZON.HelpIntent"
+    }
+    {
+      "intent": "IngredientIntent",
+      "slots": [
+          {
+              "name":"Food",
+              "type":"FOODS"
+          }
+      ]
+    },
+    {
+      "intent": "AMAZON.HelpIntent"
+    }
+    {
+      "intent": "IntoleranceIntent",
+      "slots": [
+          {
+              "name":"Food",
+              "type":"INTOLERANCES"
+          }
+      ]
+    },
+    {
+      "intent": "AMAZON.HelpIntent"
+    }
+    {
+      "intent": "DietIntent",
+      "slots": [
+          {
+              "name":"Food",
+              "type":"DIETS"
           }
       ]
     },
