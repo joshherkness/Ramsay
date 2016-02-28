@@ -182,4 +182,42 @@ function getRecipeIngredientsWithId(id, callback) {
         var recipeIngredients = recipeInformation.extendedIngredients;
         callback(recipeIngredients);
     });
+
+
+
+
+function getRecipeImageWithID(id, callback) {
+    getRecipeInformation(id, function (information) {
+        var recipeInformation = information;
+        var recipeImage = recipeInformation.image;
+        callback(recipeImage);
+    });
+
+function getRecipeTitleWithID(id, callback) {
+    getRecipeInformation(id, function (information) {
+        var recipeInformation = information;
+        var recipeImage = recipeInformation.title;
+        callback(recipeTitle);
+    });
+
+function buildCard(id, response){
+    var title;
+    var image;
+    getRecipeTitleWithID(id, function (recipeTitle) {
+        var title = recipeTitle;
+    });
+    getRecipeImageWithID(id, function (recipeImage) {
+        var image = recipeImage;
+    });
+  return{
+    card:{
+        type: "Simple",
+        title: title
+        content: image
+    }
+  };
+}
+
+
+
 }
