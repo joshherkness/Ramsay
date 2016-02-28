@@ -115,12 +115,18 @@ function listIngredients(intent, session, response){
 function recipeIntentHelper(intent, session, response) {
   // Get the food
   var foodSlot = intent.slots.Food,
-      foodName;
+  foodName;
   if (foodSlot && foodSlot.value){
       foodName = foodSlot.value.toLowerCase();
-      // Request the recipe using the API
   }
-    getRecipes(foodName, function (recipes) {
+  //Get the intolerance
+  var intoleranceSlot = intent.slots.Intolerance,
+  intolerance;
+  if (intolerance && intoleranceSlot.value){
+      intolerance = intoleranceSlot.value.toLowerCase();
+  }
+
+    getRecipes(foodName, intolerance, function (recipes) {
         if(recipes == undefined){
             response.tell("I'm sorry, I couldn't find what you are looking for");
         }
@@ -152,7 +158,18 @@ getRecipes(keyword, function(recipes) {
 
 
 function getRecipes(keyword, callback){
-    unirest.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?query="+keyword)
+    getRecipes(keyword, undefined, function(results){
+      callback(results)
+    });
+}
+
+function getRecipes(keyword, intolerance, callback){
+    var src = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?query="
+    if (intolerance != undefined){
+      src  = src + "intolerance=" + intolerance + "&"
+    }
+    src = src + keyword
+    unirest.get(src)
     .header("X-Mashape-Key", unirestKey)
     .end(function (result) {
         callback(result.body.results);
