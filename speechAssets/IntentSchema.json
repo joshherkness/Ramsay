@@ -25,7 +25,7 @@
       "intent": "IntoleranceIntent",
       "slots": [
           {
-              "name":"Food",
+              "name":"Intolerance",
               "type":"INTOLERANCES"
           }
       ]
@@ -34,7 +34,7 @@
       "intent": "DietIntent",
       "slots": [
           {
-              "name":"Food",
+              "name":"Diet",
               "type":"DIETS"
           }
       ]
