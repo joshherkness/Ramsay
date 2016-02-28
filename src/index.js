@@ -52,8 +52,8 @@ Ramsay.prototype.eventHandlers.onSessionStarted = function (sessionStartedReques
 
 Ramsay.prototype.eventHandlers.onLaunch = function (launchRequest, session, response) {
     console.log("HelloWorld onLaunch requestId: " + launchRequest.requestId + ", sessionId: " + session.sessionId);
-    var speechOutput = "Welcome to the Alexa Skills Kit, you can say hello";
-    var repromptText = "You can say hello";
+    var speechOutput = "Welcome the Ramsay Kitchen Assistant";
+    var repromptText = "You can ask for recipes";
     response.ask(speechOutput, repromptText);
 };
 
