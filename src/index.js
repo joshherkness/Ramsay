@@ -65,8 +65,8 @@ Ramsay.prototype.eventHandlers.onSessionEnded = function (sessionEndedRequest, s
 
 Ramsay.prototype.intentHandlers = {
     // register custom intent handlers
-    "RamsayIntent": function (intent, session, response) {
-        listIngredients(intent, session, response);
+    "RecipeIntent": function (intent, session, response) {
+        response.ask("Aaaaay L M A O");
     },
     "AMAZON.HelpIntent": function (intent, session, response) {
         response.ask("You can say hello to me!", "You can say hello to me!");
