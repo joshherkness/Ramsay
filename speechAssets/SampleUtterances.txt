@@ -1,7 +1,16 @@
 IngredientIntent what do i need to make {Food}
 IngredientIntent what ingredients do i need to make {Food}
+IngredientIntent what ingredients do i need to for {Food}
 IngredientIntent for {Food} recipes
 IngredientIntent what's in {Food}
+IngredientIntent what's inside {Food}
 IngredientIntent composition of {Food}
 IngredientIntent for the ingredients of {Food}
 IngredientIntent for {Food} ingredients
+
+RecipeIntent find me a recipe for {food}
+RecipeIntent i want to eat {food}
+RecipeIntent i want {food}
+RecipeIntent find me a recipe for {Intolerance} free {food}
+RecipeIntent i cant eat {Intolerance}, but i want {food}
+RecipeIntent find me a recipe for {food} without {Intolerance}

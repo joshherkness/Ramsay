@@ -6,6 +6,10 @@
           {
               "name":"Food",
               "type":"FOODS"
+          },
+          {
+              "name":"Intolerance",
+              "type":"INTOLERANCES"
           }
       ]
     },
