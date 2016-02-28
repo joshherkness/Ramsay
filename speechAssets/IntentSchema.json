@@ -11,6 +11,27 @@
     },
     {
       "intent": "AMAZON.HelpIntent"
+    },
+    {
+      "intent": "IngredientIntent"
+    },
+    {
+      "intent": "IntoleranceIntent",
+      "slots": [
+          {
+              "name":"Intolerance",
+              "type":"INTOLERANCES"
+          }
+      ]
+    },
+    {
+      "intent": "DietIntent",
+      "slots": [
+          {
+              "name":"Diet",
+              "type":"DIETS"
+          }
+      ]
     }
   ]
 }
