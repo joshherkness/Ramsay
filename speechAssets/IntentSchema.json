@@ -11,33 +11,6 @@
     },
     {
       "intent": "AMAZON.HelpIntent"
-    },
-    {
-      "intent": "IngredientIntent",
-      "slots": [
-          {
-              "name":"Food",
-              "type":"FOODS"
-          }
-      ]
-    },
-    {
-      "intent": "IntoleranceIntent",
-      "slots": [
-          {
-              "name":"Intolerance",
-              "type":"INTOLERANCES"
-          }
-      ]
-    },
-    {
-      "intent": "DietIntent",
-      "slots": [
-          {
-              "name":"Diet",
-              "type":"DIETS"
-          }
-      ]
     }
   ]
 }
