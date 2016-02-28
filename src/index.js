@@ -109,13 +109,18 @@ function listIngredients(intent, session, response){
     });
 }
 
-function recipeIntentHelper(intnet, session, response) {
-    var request = getRecipeRequest(intent, session, response);
-
-    getRecipes(request, function (recipes) {
+function recipeIntentHelper(intent, session, response) {
+  // Get the food
+  var foodSlot = intent.slots.Food,
+      foodName;
+  if (foodSlot && foodSlot.value){
+      foodName = foodSlot.value.toLowerCase();
+      // Request the recipe using the API
+  }
+    getRecipes(foodName, function (recipes) {
         // Pick a randome element of the recipes that are returned.
         var randomRecipe = recipes[Math.floor(Math.random()*recipes.length)];
-        response.tell("How about " + randomRecipe.title);
+        response.tell("I found " + randomRecipe.title);
     });
 }
 

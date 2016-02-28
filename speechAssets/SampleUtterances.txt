@@ -8,9 +8,11 @@ IngredientIntent composition of {Food}
 IngredientIntent for the ingredients of {Food}
 IngredientIntent for {Food} ingredients
 
-RecipeIntent find me a recipe for {food}
-RecipeIntent i want to eat {food}
-RecipeIntent i want {food}
-RecipeIntent find me a recipe for {Intolerance} free {food}
-RecipeIntent i cant eat {Intolerance}, but i want {food}
-RecipeIntent find me a recipe for {food} without {Intolerance}
+RecipeIntent find me a recipe for {Food}
+RecipeIntent i want to eat {Food}
+RecipeIntent i want {Food}
+RecipeIntent find me a recipe for {Intolerance} free {Food}
+RecipeIntent i cant eat {Intolerance} but i want {Food}
+RecipeIntent find me a recipe for {Food} without {Intolerance}
+RecipeIntent i'm in the mood for {Food}
+RecipeIntent find me a {Food} recipe

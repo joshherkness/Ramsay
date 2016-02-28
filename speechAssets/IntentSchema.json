@@ -32,15 +32,6 @@
       ]
     },
     {
-      "intent": "DietIntent",
-      "slots": [
-          {
-              "name":"Diet",
-              "type":"DIETS"
-          }
-      ]
-    },
-    {
       "intent": "AMAZON.HelpIntent"
     }
   ]
