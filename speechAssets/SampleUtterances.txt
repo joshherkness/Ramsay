@@ -1,9 +1,7 @@
-RecipeIntent what do i need to make {Food}
-RecipeIntent what ingredients do i need to make {Food}
-RecipeIntent for {Food} recipes
-RecipeIntent what's in {Food}
-RecipeIntent composition of {Food}
-RecipeIntent for the ingredients of {Food}
-RecipeIntent for {Food} ingredients
-
-SelectorIntent {Selection}
+IngredientIntent what do i need to make {Food}
+IngredientIntent what ingredients do i need to make {Food}
+IngredientIntent for {Food} recipes
+IngredientIntent what's in {Food}
+IngredientIntent composition of {Food}
+IngredientIntent for the ingredients of {Food}
+IngredientIntent for {Food} ingredients
