@@ -108,6 +108,7 @@ function listIngredients(intent, session, response){
             s = s + ", " + recipeIngredients[i].name;
           }
         }
+        //respondWithRecipeCard(156992,s);
         response.tell(s);
     });
 }
@@ -235,6 +236,5 @@ function respondWithRecipeCard(id,response){
     getRecipeImageWithID(id, function (recipeImage) {
         image = recipeImage;
     });
-    tellWithCard(response, recipeTitle, recipeImage)
-}
+    tellWithCard(response, recipeTitle, recipeImage);
 }
