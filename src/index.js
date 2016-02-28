@@ -95,6 +95,9 @@ function listIngredients(intent, session, response){
     }
 
     getRecipeIngredientsWithKeyword(foodName, function (recipeIngredients) {
+        if(recipeIngredients == undefined){
+            response.tell("I'm sorry, I couldn't find what you are looking for");
+        }
         var s = "You need ";
         for(var i = 0; i < recipeIngredients.length; i++){
           if(i == 0){
@@ -118,6 +121,9 @@ function recipeIntentHelper(intent, session, response) {
       // Request the recipe using the API
   }
     getRecipes(foodName, function (recipes) {
+        if(recipes == undefined){
+            response.tell("I'm sorry, I couldn't find what you are looking for");
+        }
         // Pick a randome element of the recipes that are returned.
         var randomRecipe = recipes[Math.floor(Math.random()*recipes.length)];
         response.tell("I found " + randomRecipe.title);
@@ -233,7 +239,7 @@ function buildCard(id){
     return{
         card:{
             type: "Simple",
-            title: title
+            title: title,
             content: image
         }
     };
