@@ -96,4 +96,17 @@ function listIngredients(intent, session, response){
       // Request the recipe using the API
       
   }
+
+function whatCanIMake(intent, session, response){
+
+  // Get the food
+  var foodSlot = intent.slots.Food,
+      foodName;
+  if (foodSlot && foodSlot.value){
+      foodName = foodSlot.value.toLowerCase();
+      response.tell("you said " + foodName);
+
+      // Request recipies using the API
+      
+  }
 };
