@@ -93,21 +93,17 @@ function listIngredients(intent, session, response){
         foodName;
     if (foodSlot && foodSlot.value){
         foodName = foodSlot.value.toLowerCase();
-        // Request the recipe using the API
     }
 
-    getRecipeIngredientsWithKeyword(foodName, function (recipeIngredients) {
-        if(recipeIngredients == undefined){
-            response.tell("I'm sorry, I couldn't find what you are looking for");
-        }
+    getRecipeIngredientsWithKeyword(foodName, function (ingredients) {
         var s = "You need ";
-        for(var i = 0; i < recipeIngredients.length; i++){
+        for(var i = 0; i < ingredients.length; i++){
           if(i == 0){
-            s = s + recipeIngredients[i].name;
-          }else if(i == recipeIngredients.length - 1){
-            s = s + ", and " + recipeIngredients[i].name;
+            s = s + ingredients[i].name;
+          }else if(i == ingredients.length - 1){
+            s = s + ", and " + ingredients[i].name;
           }else{
-            s = s + ", " + recipeIngredients[i].name;
+            s = s + ", " + ingredients[i].name;
           }
         }
         response.tell(s);
@@ -139,15 +135,6 @@ function recipeIntentHelper(intent, session, response) {
 }
 
 
-function getRecipeRequest(intent, session, response){
-    var foodSlot = intent.slots.Food,
-        foodName;
-    if (foodSlot && foodSlot.value){
-        foodName = foodSlot.value.toLowerCase();
-    }
-    return(foodName)
-}
-
 // API functions
 
 // Example of how to obtain a recipe given a keyword
@@ -158,19 +145,12 @@ getRecipes(keyword, function(recipes) {
 })
 */
 
-
-function getRecipes(keyword, callback){
-    getRecipes(keyword, undefined, function(results){
-      callback(results)
-    });
-}
-
 function getRecipes(keyword, intolerance, callback){
-    var src = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?query="
+    var src = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?"
     if (intolerance != undefined){
       src  = src + "intolerance=" + intolerance + "&"
     }
-    src = src + keyword
+    src = src + "query=" + keyword
     unirest.get(src)
     .header("X-Mashape-Key", unirestKey)
     .end(function (result) {
@@ -202,11 +182,10 @@ getRecipeIngredientsWithKeyword(keyword, function (recipeIngredients) {
 */
 
 function getRecipeIngredientsWithKeyword(keyword, callback) {
-    getRecipes(keyword, function(recipes) {
+    getRecipes(keyword, undefined, function(recipes) {
         var firstRecipeId = recipes[0].id;
         getRecipeInformation(firstRecipeId, function (information) {
-            var recipeInformation = information;
-            var recipeIngredients = recipeInformation.extendedIngredients;
+            var recipeIngredients = information.extendedIngredients;
             callback(recipeIngredients);
         });
     });
@@ -224,24 +203,6 @@ function getRecipeIngredientsWithId(id, callback) {
         var recipeInformation = information;
         var recipeIngredients = recipeInformation.extendedIngredients;
         callback(recipeIngredients);
-    });
-}
-
-
-
-function getRecipeImageWithID(id, callback) {
-    getRecipeInformation(id, function (information) {
-        var recipeInformation = information;
-        var recipeImage = recipeInformation.image;
-        callback(recipeImage);
-    });
-}
-
-function getRecipeTitleWithID(id, callback) {
-    getRecipeInformation(id, function (information) {
-        var recipeInformation = information;
-        var recipeImage = recipeInformation.title;
-        callback(recipeTitle);
     });
 }
 
