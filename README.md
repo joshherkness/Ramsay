@@ -5,3 +5,5 @@ Amazon Alexa kitchen assistant built with Node.js, AWS, Amazon Echo, and Alexa s
 [Demo 1](https://www.youtube.com/watch?v=aGpUHKqCg4k)
 
 [Demo 2](https://www.youtube.com/watch?v=nHIZTELOPrc)
+
+> Not currently in development.
